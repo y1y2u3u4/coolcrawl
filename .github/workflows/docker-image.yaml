@@ -18,6 +18,9 @@ jobs:
 
     - name: Navigate to apps/api directory
       run: cd apps/api
+    
+    - name: List files in the current directory
+      run: ls -alt
 
     - name: Build the Docker image
       run: |

@@ -16,15 +16,11 @@ jobs:
       id: timestamp
       run: echo "::set-output name=timestamp::$(date +%s)"
 
-    - name: Navigate to apps/api directory
-      run: cd apps/api
-    
-    - name: List files in the current directory
-      run: ls -alt
-
     - name: Build the Docker image
       run: |
         TIMESTAMP="${{ steps.timestamp.outputs.timestamp }}"
+        cd apps/api
+        
         docker build . --file worker.Dockerfile --tag 0001coder/coolcrawl-worker:${TIMESTAMP}
         docker tag 0001coder/coolcrawl-worker:${TIMESTAMP} 0001coder/coolcrawl-worker:latest
 

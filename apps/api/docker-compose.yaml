@@ -10,7 +10,7 @@ services:
     environment:
       - REDIS_URL=redis://redis:6379
       - USE_DB_AUTHENTICATION=false
-    image: 0001coder/coolcrawl-worker:local
+    image: 0001coder/coolcrawl-worker:latest
     restart: always
 
   server:
@@ -18,7 +18,7 @@ services:
       - REDIS_URL=redis://redis:6379
       - USE_DB_AUTHENTICATION=false
       - HOST=0.0.0.0
-    image: 0001coder/coolcrawl-server:local
+    image: 0001coder/coolcrawl-server:latest
     ports:
       - "3002:3002"
     restart: always

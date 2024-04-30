@@ -16,13 +16,16 @@ jobs:
       id: timestamp
       run: echo "::set-output name=timestamp::$(date +%s)"
 
+    - name: Navigate to apps/api directory
+      run: cd apps/api
+
     - name: Build the Docker image
       run: |
         TIMESTAMP="${{ steps.timestamp.outputs.timestamp }}"
-        docker build . --file apps/api/worker.Dockerfile --tag 0001coder/coolcrawl-worker:${TIMESTAMP}
+        docker build . --file worker.Dockerfile --tag 0001coder/coolcrawl-worker:${TIMESTAMP}
         docker tag 0001coder/coolcrawl-worker:${TIMESTAMP} 0001coder/coolcrawl-worker:latest
 
-        docker build . --file apps/api/server.Dockerfile --tag 0001coder/coolcrawl-server:${TIMESTAMP}
+        docker build . --file server.Dockerfile --tag 0001coder/coolcrawl-server:${TIMESTAMP}
         docker tag 0001coder/coolcrawl-server:${TIMESTAMP} 0001coder/coolcrawl-server:latest
 
     - name: Log in to Docker Hub

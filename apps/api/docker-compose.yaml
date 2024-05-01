@@ -11,6 +11,7 @@ services:
       - REDIS_URL=redis://redis:6379
       - USE_DB_AUTHENTICATION=false
     image: 0001coder/coolcrawl-worker:latest
+    pull_policy: always
     restart: always
 
   server:
@@ -19,6 +20,7 @@ services:
       - USE_DB_AUTHENTICATION=false
       - HOST=0.0.0.0
     image: 0001coder/coolcrawl-server:latest
+    pull_policy: always
     ports:
       - "3002:3002"
     restart: always

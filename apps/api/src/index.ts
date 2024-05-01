@@ -5,6 +5,7 @@ import "dotenv/config";
 import { getWebScraperQueue } from "./services/queue-service";
 import { redisClient } from "./services/rate-limiter";
 import { v0Router } from "./routes/v0";
+import { v1Router } from "./routes/v1";
 const { createBullBoard } = require("@bull-board/api");
 const { BullAdapter } = require("@bull-board/api/bullAdapter");
 const { ExpressAdapter } = require("@bull-board/express");
@@ -42,6 +43,7 @@ app.get("/test", async (req, res) => {
 
 // register router
 app.use(v0Router);
+app.use(v1Router);
 
 const DEFAULT_PORT = process.env.PORT ?? 3002;
 const HOST = process.env.HOST ?? "localhost";

@@ -21,11 +21,11 @@ jobs:
         TIMESTAMP="${{ steps.timestamp.outputs.timestamp }}"
         cd apps/api
         
-        docker build . --file worker.Dockerfile --tag 0001coder/coolcrawl-worker:${TIMESTAMP}
-        docker tag 0001coder/coolcrawl-worker:${TIMESTAMP} 0001coder/coolcrawl-worker:latest
+        docker build . --file worker.Dockerfile --tag xiaoshitou001/coolcrawl-worker:${TIMESTAMP}
+        docker tag xiaoshitou001/coolcrawl-worker:${TIMESTAMP} xiaoshitou001/coolcrawl-worker:latest
 
-        docker build . --file server.Dockerfile --tag 0001coder/coolcrawl-server:${TIMESTAMP}
-        docker tag 0001coder/coolcrawl-server:${TIMESTAMP} 0001coder/coolcrawl-server:latest
+        docker build . --file server.Dockerfile --tag xiaoshitou001/coolcrawl-server:${TIMESTAMP}
+        docker tag xiaoshitou001/coolcrawl-server:${TIMESTAMP} xiaoshitou001/coolcrawl-server:latest
 
     - name: Log in to Docker Hub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
@@ -33,8 +33,8 @@ jobs:
     - name: Push Docker image to registry
       run: |
         TIMESTAMP="${{ steps.timestamp.outputs.timestamp }}"
-        docker push 0001coder/coolcrawl-worker:${TIMESTAMP}
-        docker push 0001coder/coolcrawl-worker:latest
+        docker push xiaoshitou001/coolcrawl-worker:${TIMESTAMP}
+        docker push xiaoshitou001/coolcrawl-worker:latest
 
-        docker push 0001coder/coolcrawl-server:${TIMESTAMP}
-        docker push 0001coder/coolcrawl-server:latest
+        docker push xiaoshitou001/coolcrawl-server:${TIMESTAMP}
+        docker push xiaoshitou001/coolcrawl-server:latest
